@@ -1,0 +1,31 @@
+<div class="container">
+	<div class="jumbotron">
+  		<% if flash[:notice] %>
+    	<div class="notice"><%= flash[:notice] %></div>
+  		<% end %>
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+		<h2 id="lbllist"><strong>MEMBERS LIST</strong></h2>
+		<table class="table table-striped">
+			<tr>
+				<th>Name</th>
+				<th>Age</th>
+				<th>Address</th>
+				<th>Email</th>
+				<th>Tel</th>
+			</tr>
+
+		<%	@member.each do |member| %>
+			<tr>
+				<td><%= member.name %></td>
+				<td><%= member.age %></td>
+				<td><%= member.address %></td>
+				<td><%= member.email %></td>
+				<td><%= member.tel %></td>
+			</tr>
+		<% end %>
+		</table>
+		</div>
+		<div class="col-md-2"></div>
+	</div>	
+</div>
