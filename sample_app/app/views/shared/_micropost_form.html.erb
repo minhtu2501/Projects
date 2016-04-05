@@ -1,0 +1,16 @@
+<%= form_for @micropost, html: { mutipart: true } do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<div class="field">
+		<%= f.text_area :content, placeholder: "Compose new micropost" %>
+	</div>
+		<%= f.fields_for :pictures do |f_picture| %>
+		<div class="field">
+			<%= f_picture.lable :picture %>
+		
+			<%= f_picture.file_field :picture, multiple: true, name: 'pictures[picture][]', class:'form-control' %>
+		</div>
+		<% end %>
+
+	<%= f.submit "Post", class: 'btn btn-primary' %>
+<% end %>
+
