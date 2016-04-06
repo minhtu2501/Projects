@@ -1,5 +1,5 @@
 class Picture < ActiveRecord::Base
-	belongs_to :micropost
+	belongs_to :micropost #, foreign_key: 'micropost_id'
 	validates :micropost, presence: true
 	mount_uploader :picture, PictureUploader
 	

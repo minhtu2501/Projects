@@ -1,6 +1,6 @@
 class Micropost < ActiveRecord::Base
   has_many :comments, dependent: :destroy
-  has_many :pictures, inverse_of: :micropost, dependent: :destroy
+  has_many :pictures, dependent: :destroy
   accepts_nested_attributes_for :pictures, allow_destroy: true
   belongs_to :user
   default_scope -> {order(created_at: :desc)}

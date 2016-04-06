@@ -279,26 +279,29 @@ input {
   }
   .content {
     display: block;
-    margin-left: 60px;
+    margin-left: 90px;
     img {
       display: block;
       padding: 5px 0;
     }
   }
+
+  .micropost_picture{
+    display: inline-block;
+    border: 1px solid;
+    margin: 2px 0px;
+  }
+
   .timestamp {
+    clear: both;
     color: $gray-light;
     display: block;
-    margin-left: 60px;
-  }
-  .gravatar {
-    float: left;
-    margin-right: 10px;
-    margin-top: 5px;
+    margin-left: 90px;
   }
 }
 
 div.form-comment{
-  margin-top: 30px; 
+  margin-top: 10px; 
 }
 
 div.form_reply{
@@ -320,6 +323,7 @@ span.picture {
 }
 
 div.replies{
+  margin-top: 10px; 
   margin-left: 150px;
 }
 

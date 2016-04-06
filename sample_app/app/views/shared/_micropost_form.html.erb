@@ -3,9 +3,10 @@
 	<div class="field">
 		<%= f.text_area :content, placeholder: "Compose new micropost" %>
 	</div>
-		<%= f.fields_for :pictures do |f_picture| %>
+		<%= f.fields_for :pictures, @micropost.pictures.build do |f_picture| %>
+	
 		<div class="field">
-			<%= f_picture.lable :picture %>
+			<%= f_picture.label :picture %>
 		
 			<%= f_picture.file_field :picture, multiple: true, name: 'pictures[picture][]', class:'form-control' %>
 		</div>
