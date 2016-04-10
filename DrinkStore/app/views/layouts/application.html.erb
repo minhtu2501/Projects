@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DrinkStore</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%= render 'layouts/header'%>
+<div class="container">
+
+  <main  id="body"style="height:100% ; background: #004400;" >
+  <div id="search">
+  <h1 id="search-title"> Search Product</h1>
+  <%= render 'layouts/search' %>
+  </div>
+
+</main>
+	
+  <p class="notice"><%= notice %></p>
+  <%= yield %>
+</div>
+</body>
+</html>
