@@ -1,0 +1,154 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require bootstrap_sb_admin_base_v2
+ *= require_tree .
+ *= require_self
+ */
+
+ *{
+	margin: 0;
+	padding: 0;
+}
+
+div.login{
+	margin-left: 480px;
+}
+
+.order_form{
+	text-align: center;
+}
+
+h1, h2{
+	text-align: center;
+}
+
+div#welcome{
+	text-align: center;
+}
+
+#new_session{
+	text-align: center;
+	background-color: #999; 
+}
+
+#nav{
+	width: 100%;
+	height: 40px;
+	background: #000;
+}
+
+#page_nav a{
+	line-height: 40px;
+	color: #fff;
+	padding: 0 20px;
+	text-decoration: none;
+}
+
+#sign_in a{
+	line-height: 40px;
+	color: #fff;
+	padding: 0 20px;
+	text-decoration: none;
+}
+
+#sign_in{
+	float: right;
+	margin-right: 5%;
+}
+
+#page_nav{
+	margin-left: 5%;
+	float: left;
+}
+
+.search-box{margin-left:22%; padding-top: 0%}
+.search-box .search-form {
+	position:relative;
+	width:278px;
+	height:48px;
+}
+.search-box .search-form .search-text {
+	border:1px solid #e8e8e8;
+	width:250%;
+	line-height:48px;
+	color:#aeaeae;
+	font-size:16px;
+	font-family: 'Istok Web', sans-serif;
+	height:48px;
+	margin:0;
+	padding-left:10px;
+	padding-right:60px;
+	position:relative;
+	z-index:0;
+}
+.search-submit{margin-left: 60%}
+.search-box .search-form .search-submit {
+	width:54px;
+	height:50px;
+	background:url(https://lh6.googleusercontent.com/-Afl2I96CyOU/UXPHJcF9-KI/AAAAAAAAFcI/P06mAE04YqI/s54/search-icon.png) no-repeat 0 0;
+	border:none;
+	padding:0;
+	margin:0;
+	cursor:pointer;
+	position:absolute;
+	top:-5px;
+	left:275%;
+
+	text-indent:-9999px;
+	line-height:0;
+	font-size:0;
+}
+.search-box .search-form .search-submit:hover{
+	opacity:0.8;
+}
+.search-box .search-form .search-text:focus {
+	box-shadow:0 0 5px #ddd;
+	-moz-box-shadow:0 0 5px #ddd;
+	-webkit-box-shadow:0 0 5px #ddd;
+	border:1px solid #cccccc;
+}
+#search{background:WhiteSmoke; height: 30%}
+#search-title{
+	font-family: font_loko,Tahoma,Arial,Geneva,sans-serif;
+	font-size: 30px;
+	color: #FF8401;
+	margin-top: 15px;
+	text-align: center;
+	padding-top: 3%;
+}
+.search_tagkey {
+    background-color: OldLace;
+    border-radius: 3px;
+    
+    padding: 3px 15px 5px;
+    margin: 0px 3px;
+    float: left;
+	list-style: none;
+}
+.search_tagkey li a {text-decoration: none; color: #A9834F;font-size: 14px;}
+code {
+    display: block;
+    font: 14px/16px "Courier New",Courier,monospace;
+    color: #00008B;
+    padding: 10px 15px;
+    background-color: #F9F9F9;
+    border: 1px dashed #2F6FAB;
+    color: black;
+    line-height: 1.1em;
+    padding: 1em;
+}
+
+#order_detail{
+	margin-left: 160px;
+	margin-top: 20px;
+}
