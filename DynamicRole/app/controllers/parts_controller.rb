@@ -1,6 +1,6 @@
 class PartsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :load_permissions
+  # before_filter :load_permissions
   load_and_authorize_resource
   before_action :set_part, only: [:show, :edit, :update, :destroy]
 

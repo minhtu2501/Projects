@@ -1,8 +1,14 @@
 Role.create(name: 'Super Admin')
+Role.create(name: 'PM')
+Role.create(name: 'Team Leader')
 Role.create(name: 'Staff')
 
 Permission.create(action: 'manage', subject_class:'all')
 
-User.create(name: "Prasad Surase", email: "prasad@joshsoftware.com", password: "prasad", password_confirmation: "prasad", role_id: Role.find_by_name('Super Admin').id)
+User.create(name: "Hoang Minh Tu", email: "minhtu250192@gmail.com", password: "haithangban", password_confirmation: "haithangban")
 
-User.create(name: "Neo", email: "neo@matrix.com", password: "prasad", password_confirmation: "prasad", role_id: Role.find_by_name('Staff').id)
+User.create(name: "Tu Rau", email: "staff@gmail.com", password: "haithangban", password_confirmation: "haithangban")
+
+User.create(name: "Staff 01", email: "staff1@gmail.com", password: "haithangban", password_confirmation: "haithangban")
+
+User.create(name: "Staff 02", email: "staff2@gmail.com", password: "haithangban", password_confirmation: "haithangban")
