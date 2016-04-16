@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160415084636) do
+ActiveRecord::Schema.define(version: 20160416155627) do
 
   create_table "drawings", force: :cascade do |t|
     t.string   "sheet_number", limit: 255
@@ -92,4 +92,10 @@ ActiveRecord::Schema.define(version: 20160415084636) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "permissions_roles", "permissions"
+  add_foreign_key "permissions_roles", "roles"
+  add_foreign_key "permissions_users", "permissions"
+  add_foreign_key "permissions_users", "users"
+  add_foreign_key "roles_users", "roles"
+  add_foreign_key "roles_users", "users"
 end

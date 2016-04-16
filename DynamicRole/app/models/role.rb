@@ -1,6 +1,7 @@
 class Role < ActiveRecord::Base
-   has_and_belongs_to_many :users
-   has_and_belongs_to_many :permissions
+   has_many :roles_users, foreign_key: :role_id
+   has_many :permissions_roles, foreign_key: :role_id
+   has_many :permissions, through: :permissions_roles
 
    validates :name, presence: true, uniqueness: true
 

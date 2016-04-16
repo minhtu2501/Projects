@@ -15,13 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def load_permissions
-    @current_permissions = []
-    current_user.roles.each do |role|
-      @current_permissions << role.permissions.collect{|i| [i.action.to_sym, i.subject_class]}
-    end
-    current_user.permissions.each do |per|
-      @current_permissions << per
-    end
-    @current_permissions.uniq
+    @current_permissions = current_user.role_permissions + current_user.permissions
+    @current_permissions.uniq if @current_permissions.present?
   end
 end

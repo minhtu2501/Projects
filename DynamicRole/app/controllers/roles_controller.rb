@@ -7,6 +7,7 @@ class RolesController < ApplicationController
   # GET /roles
   # GET /roles.json
   def index
+    binding.pry
     @roles = Role.all#.keep_if{|i| i.name != "Super Admin"}
   end
 

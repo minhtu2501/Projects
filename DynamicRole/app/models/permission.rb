@@ -1,4 +1,4 @@
 class Permission < ActiveRecord::Base
-	has_and_belongs_to_many :roles
-	has_and_belongs_to_many :users
+	has_many :permissions_users, foreign_key: :permission_id
+  has_many :permissions_roles, foreign_key: :permission_id
 end
