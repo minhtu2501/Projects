@@ -3,8 +3,11 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  has_and_belongs_to_many :roles
-  has_and_belongs_to_many :permissions
+  has_many :roles_users
+  has_many :roles, through: :roles_users
+  has_many :permissions_users
+  has_many :permissions, through: :permissions_users
+  has_and_belongs_to_many :permissions_roles, through: :roles, class_name: Permission.name
 
   def super_admin?
     self.roles.each do |role|

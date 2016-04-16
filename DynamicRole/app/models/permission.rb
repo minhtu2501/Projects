@@ -1,4 +1,6 @@
 class Permission < ActiveRecord::Base
-	has_and_belongs_to_many :roles
-	has_and_belongs_to_many :users
+	has_many :permission_roles
+  has_many :role, through: :permission_roles
+	has_many :permissions_users
+  has_many :user, through: :permissions_users
 end

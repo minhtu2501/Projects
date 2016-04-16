@@ -8,20 +8,20 @@ class ApplicationController < ActionController::Base
     redirect_to root_path
   end
 
-  protected
+  # protected
 
-  def current_ability
-    @current_ability ||= Ability.new(current_user)
-  end
+  # def current_ability
+  #   @current_ability ||= Ability.new(current_user)
+  # end
 
-  def load_permissions
-    @current_permissions = []
-    current_user.roles.each do |role|
-      @current_permissions << role.permissions.collect{|i| [i.action.to_sym, i.subject_class]}
-    end
-    current_user.permissions.each do |per|
-      @current_permissions << per
-    end
-    @current_permissions.uniq
-  end
+  # def load_permissions
+  #   @current_permissions = []
+  #   current_user.roles.each do |role|
+  #     @current_permissions << role.permissions.collect{|i| [i.action.to_sym, i.subject_class]}
+  #   end
+  #   current_user.permissions.each do |per|
+  #     @current_permissions << per
+  #   end
+  #   @current_permissions.uniq
+  # end
 end
