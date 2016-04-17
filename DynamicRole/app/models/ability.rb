@@ -2,21 +2,24 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    permissions = []
-    user.roles.each do |role|
-        role.permissions.each do |per|
-            permissions << per
+    # permissions = []
+    # user.roles.each do |role|
+    #     role.permissions.each do |per|
+    #         permissions << per
+    #     end
+    # end
+    # user.permissions.each do |per|
+    #     permissions << per
+    # end
+    permissions = user.role_permissions + user.permissions
+    if permissions.present?
+      permissions = permissions.uniq
+      permissions.each do |permission|
+        if permission.subject_class == "all"
+          can permission.action.to_sym, permission.subject_class.to_sym
+        else
+          can permission.action.to_sym, get_permission(permission.subject_class)
         end
-    end
-    user.permissions.each do |per|
-        permissions << per
-    end
-    permissions = permissions.uniq
-    permissions.each do |permission|
-      if permission.subject_class == "all"
-        can permission.action.to_sym, permission.subject_class.to_sym
-      else
-        can permission.action.to_sym, get_permission(permission.subject_class)
       end
     end
     # Define abilities for the passed in user here. For example:
