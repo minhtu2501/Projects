@@ -12,6 +12,9 @@ Rails.application.routes.draw do
     member do 
       get 'edit_permissions'
       put 'update_permissions'
+      put 'reset_permissions'
+      # get 'edit_role_permissions'
+      # put 'update_role_permissions'
     end
   end
   resources :roles

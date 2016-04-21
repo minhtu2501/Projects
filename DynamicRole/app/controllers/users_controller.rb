@@ -22,7 +22,15 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 		@permissions = Permission.all
 		@user_permissions = @user.permissions.collect{|p| p.id}
+		@user_role_permissions = @user.role_permissions.collect{|p| p.id}
+		@user_total_permissions = @user_role_permissions + @user_permissions
 	end
+
+	# def edit_role_permissions
+	# 	@user = User.find(params[:id])
+	# 	@permissions = Permission.all
+	# 	@user_role_permissions = @user.role_permissions.collect{|p| p.id}
+	# end
 
 	def update
 		@user = User.find(params[:id])
@@ -41,4 +49,21 @@ class UsersController < ApplicationController
       	redirect_to users_path
 	  end
 	end
+
+	def reset_permissions
+		@user = User.find(params[:id])
+		@user.permissions = []
+		if @user.save
+			redirect_to users_path
+		end
+	end
+
+	# def update_role_permissions
+	# 	@user = User.find(params[:id])
+	# 	@user.role_permissions = []
+	# 	@user.set_role_permissions(params[:permissions]) if params[:permissions]
+	# 	if @user.save
+	# 		redirect_to users_path
+	# 	end
+	# end
 end

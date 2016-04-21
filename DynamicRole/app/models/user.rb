@@ -4,9 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :roles_users, foreign_key: :user_id
-  has_many :roles, through: :roles_users
+  has_many :roles, through: :roles_users, dependent: :destroy
   has_many :permissions_users, foreign_key: :user_id
-  has_many :permissions, through: :permissions_users
+  has_many :permissions, through: :permissions_users, dependent: :destroy
   has_many :role_permissions, through: :roles, source: :permissions
 
   def super_admin?
@@ -24,8 +24,19 @@ class User < ActiveRecord::Base
 
   def set_permissions(permissions)
     permissions.each do |id|
-      permission = Permission.find(id)
-      self.permissions << permission
+      unless self.role_permissions.collect{|p| p.id}.include?(id.to_i)
+        permission = Permission.find(id)
+        self.permissions << permission
+      end
     end
   end
+
+
+
+  # def set_role_permissions
+  #   role_permissions.each do |id|
+  #     permission = Permission.find(id)
+  #     self.role_permissions << permission
+  #   end
+  # end
 end

@@ -12,7 +12,7 @@
 	<tr>
 		<td><%= per.subject_class %></td>
 		<td><%= per.action %></td>
-		<td><%= check_box_tag 'permissions[]', per.id, @user_permissions.include?(per.id), {array: true, class: "check_box"}%></td>
+		<td><%= check_box_tag 'permissions[]', per.id, @user_total_permissions.include?(per.id), {array: true, class: "check_box"}%></td>
 	</tr>
 	<% end %>
 </table>

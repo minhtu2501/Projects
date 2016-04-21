@@ -36,7 +36,7 @@ end
 def eval_cancan_action(action)
   case action.to_s
   when "index"
-    name = 'list'
+    name = 'read'
     cancan_action = "index"
     action_desc = I18n.t :index
   when "show"
@@ -44,11 +44,11 @@ def eval_cancan_action(action)
     cancan_action = "show"
     action_desc = I18n.t :show
   when "new", "create"
-    name = 'create and update'
+    name = 'create'
     cancan_action = "create"
     action_desc = I18n.t :create
   when "edit", "update"
-    name = 'create and update'
+    name = 'update'
     cancan_action = "update"
     action_desc = I18n.t :update
   when "delete", "destroy"

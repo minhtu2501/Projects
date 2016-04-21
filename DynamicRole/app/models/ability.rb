@@ -11,6 +11,7 @@ class Ability
     # user.permissions.each do |per|
     #     permissions << per
     # end
+
     permissions = user.role_permissions + user.permissions
     if permissions.present?
       permissions = permissions.uniq
@@ -22,6 +23,7 @@ class Ability
         end
       end
     end
+    
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
