@@ -1,4 +1,6 @@
 class CartsController < ApplicationController
+  before_filter :authenticate_user!, only: [:edit, :update, :destroy]
+  
   def index
     @carts = Cart.all
   end
@@ -6,7 +8,7 @@ class CartsController < ApplicationController
   def show
     if session[:cart_id].nil?
       flash[:notice] = "You haven't create cart!"
-      redirect_to root_path
+      redirect_to '/'
     else
       @cart = current_cart
     end
@@ -30,6 +32,10 @@ class CartsController < ApplicationController
 
   def update
     @cart = Cart.find(params[:id])
+    binding.pry
+    @cart.order_items.each do |order_item|
+      order_item.update_attribute(:quantity)
+    end
   end
 
   def destroy

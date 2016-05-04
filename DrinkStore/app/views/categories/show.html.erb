@@ -20,7 +20,7 @@
         <td><%= product.category.name %></td>
         <td><%= product.price %></td>
         <td><%= product.number %></td>
-        <td><%= link_to 'Show', product %></td>
+        <td><%= link_to 'Show', product_path(product) %></td>
         <td>
         <% if can? :update, Product %>
           <%= link_to 'Edit', edit_product_path(product) %>
@@ -41,10 +41,9 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to "Go To Cart", cart_path %>
-
-<br>
+<p><%= link_to "Go To Cart", cart_path %></p>     
 <% if can? :create, Product %>
-<%= link_to 'New Product', new_product_path %>
+  <%= link_to 'New Product', new_product_path %>
 <% end %>
+
+

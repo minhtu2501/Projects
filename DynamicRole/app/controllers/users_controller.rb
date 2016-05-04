@@ -42,7 +42,7 @@ class UsersController < ApplicationController
 	def update_permissions
 		@user = User.find(params[:id])
 		@user.permissions = []
-		binding.pry
+		# binding.pry
 		@user.set_permissions(params[:permissions]) if params[:permissions]
 		if @user.save
       	redirect_to users_path

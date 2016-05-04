@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-	before_filter :configure_permitted_parameters, if: :devise_controller?
+	#before_filter :configure_permitted_parameters, if: :devise_controller?
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   	helper :all
@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   	rescue_from CanCan::AccessDenied do |exception|
   	  flash[:error] = "Access denied!"
-  	  redirect_to root_url
+  	  redirect_to '/'
 	end
 
   def current_cart
@@ -23,4 +23,5 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.for(:sign_up) << :role_id
       devise_parameter_sanitizer.for(:account_update) << :role_id
 	end
+
 end

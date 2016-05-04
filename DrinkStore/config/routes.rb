@@ -1,28 +1,65 @@
 Rails.application.routes.draw do
 
-  resources :orders
-  root to: 'page#home'
-
-  get 'page/about'
-
-  get 'page/faqs'
-
-  get 'page/contact'
   
-  devise_for :users
-  scope "/admin" do
-    resources :users
-  end
-  resources :categories
-  resources :products
-  resources :roles
-  resources :orders
-  resources :carts do
-    member do
-      get 'detail_show'
+
+  post '/rate' => 'rater#create', :as => 'rate'
+  scope :admin, module: 'admin' do
+    root to: 'pages#index'
+    devise_for :admins, controllers: {
+            sessions: 'admins/sessions',
+            registrations: 'admins/registrations'
+          }
+
+    resources :categories, as: 'admin_categories'
+    resources :products, as: 'admin_products'
+    resources :orders, as: 'admin_orders'
+    resources :carts, as: 'admin_carts' do
+      member do
+        get 'detail_show'
+      end
     end
   end
-  resources :order_items
+
+  
+    get '/' => 'page#home'
+
+    get 'page/about'
+
+    get 'page/faqs'
+
+    get 'page/contact'
+
+    devise_for :users, controllers: {
+            sessions: 'users/sessions',
+            registrations: 'users/registrations'
+          }
+
+    resources :users
+
+   
+    resources :categories
+    resources :products
+    resources :orders
+    resources :order_items
+    resources :roles 
+    resources :carts do
+      member do
+        get 'detail_show'
+      end
+    end
+
+   # scope "/admin" do
+  #   get '/' => 'admin#index', as: 'admin'
+  #   devise_for :users, controllers: {
+  #       sessions: 'users/sessions',
+  #       registrations: 'users/registrations'
+  #     }, as: 'admin'
+  #   resources :categories, as: 'admin'
+  #   resources :products, as: 'admin'
+  #   resources :orders, as: 'admin'
+  # end
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

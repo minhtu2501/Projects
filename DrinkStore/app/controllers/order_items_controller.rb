@@ -1,6 +1,7 @@
 class OrderItemsController < ApplicationController
+  before_filter :authenticate_user!, only: [:index, :edit, :update]
   def index
-    @order_items = OrderItem.all
+    @order_items = OrderItem.paginate(page: params[:page])
   end
 
   def show
@@ -17,7 +18,7 @@ class OrderItemsController < ApplicationController
 
   def create
    @product = Product.find(params[:product_id])
-    if @product.number == 0
+    if @product.number == 0 || @product.number.nil?
       flash[:notice] = "We are runing out of this item!"
       redirect_to category_path(@product.category.id)
     elsif OrderItem.exists?(cart_id: current_cart.id, product_id: @product.id)
@@ -37,12 +38,19 @@ class OrderItemsController < ApplicationController
 
   def update
     @order_item = OrderItem.find(params[:id])
+    binding.pry
+    @order_item.update_attribute(:quantity)
   end
 
   def destroy
     @order_item = OrderItem.find(params[:id])
-    cart_id = @order_item.cart_id
     @order_item.destroy
-    redirect_to cart_path(cart_id)
+    redirect_to cart_path(current_cart.id)
+  end
+
+  private
+
+  def order_item_params
+    params.require(:order_item).permit(:quantity)
   end
 end

@@ -1,5 +1,6 @@
 <h1>Shopping Cart</h1>
 
+<% if @cart.order_items.present? %>
 <table id="cart" class="table table-striped">
   <tr>
     <th>Product</th>
@@ -9,15 +10,19 @@
     <th class="price">Full Price</th>
     <th>Action</th>
   </tr>
-  <% if @cart.order_items.present? %>
   <% @cart.order_items.each do |order_item | %>
     <tr class="<%= cycle :odd, :even %>">
       <td><%= order_item.product.name %></td>
       <td><%= order_item.product.category.name %></td>
-      <td class="qty"><%= order_item.quantity %></td>
+      <td class="qty">
+      <%= form_for order_item, class:"form-horizontal", remote: true do |f| %>
+      <%= f.select :quantity, (1..order_item.product.number).to_a, class:"form-control" %>
+      <% end %>
+      </td>
       <td class="price"><%= number_to_currency(order_item.unit_price) %></td>
       <td class="price"><%= number_to_currency(order_item.full_price) %></td>
       <td><%= link_to 'Remove', order_item, confirm: 'Are you sure?', method: :delete %></td>
+      
     </tr>
   <% end %>
   <tr>
@@ -33,9 +38,12 @@
     
   <tr>
     <td>
-        <%= link_to "Back", category_path(id_cat), class: 'btn btn-info' %> <%= link_to "Order", new_order_path, class: 'btn btn-info' %>
+        <%= link_to "Back", category_path(id_cat), class: 'btn btn-info' %> <%= link_to "Order", new_order_path, class: 'btn btn-info' %> 
     </td>
   </tr>
-  <% end %>
 </table>
+<% else %>
+<p>Item not available.</p>
+<%= link_to "Go To Shop", '/', class: 'btn btn-info' %>
+<% end %>
     
