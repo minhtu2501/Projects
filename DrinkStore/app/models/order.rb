@@ -9,8 +9,14 @@ class Order < ActiveRecord::Base
  validates :mobile, presence: true, length: {in: 9..10}
  validates :address, presence: true
  before_save :downcase_email
+ before_save :set_status
 
  def downcase_email
 	self.email = email.downcase
+ end
+
+ private
+ def set_status
+  self.status = 'Waiting Process..'
  end
 end

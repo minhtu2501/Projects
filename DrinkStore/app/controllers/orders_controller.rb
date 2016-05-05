@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_filter :authenticate_user!, only: [:index]
+  before_action :authenticate_user!, only: [:index]
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   # GET /orders
   # GET /orders.json
@@ -25,24 +25,13 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
+    check_quantity
     respond_to do |format|
-    if  current_cart.order_items.each do |item|
-        product = Product.find(item.product.id)
-        if item.quantity <= product.number
-          Product.update(product.id, number: product.number - item.quantity)
-        else
-          flash[:notice] = 'Item <%= product.name is running out. %>'
-          redirect_to category_path(product.category.id)
-        end
-      end
-        @order.save
-
+      if @order.save
         session[:cart_id] = nil
-        Order.update(@order.id, status: 'Waiting Process..')
-
         format.html { redirect_to @order, notice: 'Order was successful.' }
         format.json { render :show, status: :created, location: @order }
-    else
+      else
         format.html { render :new }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
@@ -82,5 +71,17 @@ class OrdersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
       params.require(:order).permit(:cart_id, :custome_name, :email, :mobile, :address, :status)
+    end
+
+    def check_quantity
+      current_cart.order_items.each do |item|
+        product = Product.find(item.product.id)
+        if item.quantity <= product.number
+          Product.update(product.id, number: product.number - item.quantity)
+        else
+          flash[:notice] = 'Item <%= product.name is running out. %>'
+          redirect_to category_path(product.category.id)
+        end
+     end
     end
 end

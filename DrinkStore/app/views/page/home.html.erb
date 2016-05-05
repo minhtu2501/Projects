@@ -2,87 +2,76 @@
   <div class="row limit">  
     <div class="col-md-4">
       <strong>Products New</strong>
-        <div id="myCarousel" class="carousel slide vertical">
-          <!-- Carousel items -->
-          <div class="carousel-inner">
-            <% @recent_products.each_with_index do |product, index| %>
-              <% if index == 0 %>
-              <div class="active item">
-                <%= product.name %>
-                <%= image_tag product.picture.url, size: "310x250" %>
-              </div>
-              <% else %>
-              <div class="item">
-                <%= product.name %>
-                <%= image_tag product.picture.url, size: "310x290" %>
-              </div>
-              <% end %>
+      <div id="myCarousel" class="carousel slide vertical">
+        <!-- Carousel items -->
+        <div class="carousel-inner">
+          <% @recent_products.each_with_index do |product, index| %>
+            <% if index == 0 %>
+            <div class="active item">
+              <%= product.name %>
+              <%= image_tag product.picture.url, size: "310x250" %>
+            </div>
+            <% else %>
+            <div class="item">
+              <%= product.name %>
+              <%= image_tag product.picture.url, size: "310x250" %>
+            </div>
             <% end %>
-          </div>
-          <!-- Carousel nav -->
-          <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-          <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+          <% end %>
         </div>
+        <!-- Carousel nav -->
+        <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+        <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
       </div>
+    </div>
     
-      <div class="col-md-4">
-      <strong>Top Seller</strong>
-        <div id="myCarousel1" class="carousel slide vertical">
-          <!-- Carousel items -->
-          <div class="carousel-inner">
-            <% @top_seller_products.each_with_index do |product, index| %>
-              <% if index == 0 %>
-              <div class="active item">
-                <%= product.name %>
-                <%= image_tag product.picture.url, size: "100x100" %>
-              </div>
-              <% else %>
-              <div class="item">
-                <%= product.name %>
-                <%= image_tag product.picture.url, size: "100x100" %>
-              </div>
-              <% end %>
+    <div class="col-md-4">
+    <strong>Top Seller</strong>
+      <div id="myCarousel1" class="carousel slide vertical">
+        <!-- Carousel items -->
+        <div class="carousel-inner">
+          <% @top_seller_products.each_with_index do |product, index| %>
+            <% if index == 0 %>
+            <div class="active item">
+              <%= product.name %>
+              <%= image_tag product.picture.url, size: "310x250" %>
+            </div>
+            <% else %>
+            <div class="item">
+              <%= product.name %>
+              <%= image_tag product.picture.url, size: "310x250" %>
+            </div>
             <% end %>
-          </div>
-          <!-- Carousel nav -->
-          <a class="carousel-control left" href="#myCarousel1" data-slide="prev">&lsaquo;</a>
-          <a class="carousel-control right" href="#myCarousel1" data-slide="next">&rsaquo;</a>
+          <% end %>
         </div>
+        <!-- Carousel nav -->
+        <a class="carousel-control left" href="#myCarousel1" data-slide="prev">&lsaquo;</a>
+        <a class="carousel-control right" href="#myCarousel1" data-slide="next">&rsaquo;</a>
       </div>
+    </div>
 
     <div class="col-md-4">
-      <strong>Sell Off</strong>
-        <div class="bg-info">
-          <div id="carousel-example-vertical" class="carousel vertical slide">
-            <div class="carousel-inner" role="listbox">
-              <div class="item active">
-                <p class="ticker-headline">
-                  <a href="#">
-                    <strong>Article Headline 1</strong>
-                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p> 
-                  </a>
-                </p>
-              </div>
-            <a class="up carousel-control" href="#carousel-example-vertical" role="button" data-slide="prev">
-              <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="down carousel-control" href="#carousel-example-vertical" role="button" data-slide="next">
-              <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
-          </div>
+    <strong>Big Deals</strong>
+      <div id="myCarousel2" class="carousel slide vertical">
+        <!-- Carousel items -->
+        <div class="carousel-inner">
+          <% @top_deals.each_with_index do |product, index| %>
+            <% if index == 0 %>
+            <div class="active item">
+              <%= product.name %>
+              <%= image_tag product.picture.url, size: "310x250" %>
+            </div>
+            <% else %>
+            <div class="item">
+              <%= product.name %>
+              <%= image_tag product.picture.url, size: "310x250" %>
+            </div>
+            <% end %>
+          <% end %>
         </div>
+        <!-- Carousel nav -->
+        <a class="carousel-control left" href="#myCarousel2" data-slide="prev">&lsaquo;</a>
+        <a class="carousel-control right" href="#myCarousel2" data-slide="next">&rsaquo;</a>
       </div>
     </div>
   </div>
@@ -100,7 +89,6 @@
     <li><a href="/contact">Contact us</a></li>
     <li><a href="/privacy">Privacy policy</a></li>
     <li><a href="/terms">Terms and Conditions</a></li>
-    <a href="/products/new" id="add_product">Add new Product</a>
   </ul>
 </div>
 <ul id="product_list">
@@ -113,7 +101,10 @@
     <span><%= product.price %></span>
     Visual Effects: <%= rating_for product, "visual_effects" %>
     <br />
-    <a href="/cart/1" class="add">Add to cart</a>
+    <%= form_tag(order_items_path, method: :post) do %>
+      <%= hidden_field_tag(:product_id, product.id) %>
+      <%= submit_tag("Add to Cart") %>
+    <% end %>
   </li>
   <% end %>
 </ul>

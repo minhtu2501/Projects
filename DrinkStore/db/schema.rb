@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160504032047) do
+ActiveRecord::Schema.define(version: 20160504074800) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -52,6 +52,20 @@ ActiveRecord::Schema.define(version: 20160504032047) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  create_table "deals", force: :cascade do |t|
+    t.integer  "percent",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "deals_products", force: :cascade do |t|
+    t.integer "product_id", limit: 4
+    t.integer "deal_id",    limit: 4
+  end
+
+  add_index "deals_products", ["deal_id"], name: "index_deals_products_on_deal_id", using: :btree
+  add_index "deals_products", ["product_id"], name: "index_deals_products_on_product_id", using: :btree
 
   create_table "order_items", force: :cascade do |t|
     t.decimal  "unit_price",           precision: 10
@@ -103,6 +117,7 @@ ActiveRecord::Schema.define(version: 20160504032047) do
     t.string   "picture_content_type", limit: 255
     t.integer  "picture_file_size",    limit: 4
     t.datetime "picture_updated_at"
+    t.integer  "deal_percent",         limit: 4
   end
 
   create_table "rates", force: :cascade do |t|
@@ -157,5 +172,7 @@ ActiveRecord::Schema.define(version: 20160504032047) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "deals_products", "deals"
+  add_foreign_key "deals_products", "products"
   add_foreign_key "pictures", "products"
 end
