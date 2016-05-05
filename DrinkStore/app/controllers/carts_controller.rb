@@ -11,6 +11,7 @@ class CartsController < ApplicationController
       redirect_to '/'
     else
       @cart = current_cart
+      @order_items = @cart.order_items
     end
   end
 

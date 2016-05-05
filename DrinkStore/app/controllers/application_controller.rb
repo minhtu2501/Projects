@@ -5,9 +5,9 @@ class ApplicationController < ActionController::Base
   	helper :all
     protect_from_forgery with: :exception
 
-  	rescue_from CanCan::AccessDenied do |exception|
-  	  flash[:error] = "Access denied!"
-  	  redirect_to '/'
+  rescue_from CanCan::AccessDenied do |exception|
+  	flash[:error] = "Access denied!"
+  	redirect_to '/'
 	end
 
   def current_cart
@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 	def configure_permitted_parameters
 	  devise_parameter_sanitizer.for(:sign_up) << :name
 	  devise_parameter_sanitizer.for(:account_update) << :name
-	  @role =Role.all
+	  @role = Role.all
       devise_parameter_sanitizer.for(:sign_up) << :role_id
       devise_parameter_sanitizer.for(:account_update) << :role_id
 	end

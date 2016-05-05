@@ -9,6 +9,7 @@ class ProductsController < ApplicationController
     @products = Product.paginate(page: params[:page])
     @recent_products = Product.recent
     @top_seller_products = Product.top_seller
+    @top_deals = Product.top_deal
   end
 
   # GET /products/1
@@ -23,6 +24,8 @@ class ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
+    @deals = Deal.all
+    @deals_products = @deals_products.collect{|d| d.id } 
   end
 
   # POST /products
@@ -47,6 +50,8 @@ class ProductsController < ApplicationController
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
+    @product.deals = []
+    @product.set_deals(params[:deals]) if params[:deals]
     respond_to do |format|
       if @product.update(product_params)
         format.html { redirect_to @product, notice: 'Product was successfully updated.' }

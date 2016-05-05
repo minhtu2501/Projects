@@ -18,6 +18,8 @@ class Admin::ProductsController < ApplicationController
 
   # GET /products/1/edit
   def edit
+    @deals = Deal.all
+    @deals_products = @product.deals.collect{|d| d.id } 
   end
 
   # POST /products
@@ -42,6 +44,8 @@ class Admin::ProductsController < ApplicationController
   # PATCH/PUT /products/1
   # PATCH/PUT /products/1.json
   def update
+    @product.deals = []
+    @product.set_deals(params[:deals]) if params[:deals]
     respond_to do |format|
       if @product.update(product_params)
         format.html { redirect_to admin_products_path, notice: 'Product was successfully updated.' }
@@ -71,6 +75,6 @@ class Admin::ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :description, :price, :number, :category_id, :picture)
+      params.require(:product).permit(:name, :description, :price, :number, :category_id, :picture, :deal_percent)
     end
 end

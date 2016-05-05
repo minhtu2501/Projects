@@ -44,3 +44,8 @@
 .carousel.vertical .item {
     left: 0;
 }
+
+.row.limit [class*="col-"]{
+  max-height: 250px;
+  overflow:hidden;
+}

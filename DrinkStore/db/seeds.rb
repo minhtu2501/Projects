@@ -27,3 +27,8 @@ p10 = Product.create({name: "Nutri", description: "Cosy footwear", price: 399.99
 p11 = Product.create({name: "Voska", description: "Cosy footwear", price: 399.99, user_id: u3.id, category_id: 4})
 p12 = Product.create({name: "Rum", description: "Cosy footwear", price: 399.99, user_id: u3.id, category_id: 4})
 p13 = Product.create({name: "Wine", description: "Cosy footwear", price: 399.99, user_id: u3.id, category_id: 5})
+
+99.times do |n|
+  percent = n + 1
+  Deal.create!(percent: percent)
+end
